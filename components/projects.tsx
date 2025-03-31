@@ -11,7 +11,7 @@ export default function Projects() {
       description:
         "A predictive model trained to analyze historical data and forecast cancer progression, designed to aid in-home hospice care by easing the caregiving process and improving patient support.",
       image: "/compile.png",
-      technologies: ["Python", "Flask", "React", "Numpy", "Pandas", "Scikit-learn", "Typescript"],
+      technologies: ["Python", "Flask", "React", "Typescript", "Numpy", "Pandas", "Scikit-learn", "Docker"],
       liveUrl: "https://github.com/emmaashi/compile",
       githubUrl: "https://github.com/emmaashi/compile",
     },
