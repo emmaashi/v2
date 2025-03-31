@@ -29,6 +29,14 @@ export default function Experiences() {
       current: true,
     },
     {
+      company: "Ply Health (YC S24)",
+      logo: "/ply.jpeg",
+      role: "Software Engineer Intern",
+      location: "San Francisco, CA",
+      period: "05/2024 - 09/2024",
+      current: false,
+    },
+    {
       company: "Wat Street",
       logo: "/watstreet.jpeg",
       role: "Backend Developer",
@@ -39,17 +47,9 @@ export default function Experiences() {
     {
       company: "Jane Street",
       logo: "/js.png",
-      role: "First-Year Trading and Technology Program",
+      role: "First-Year Trading and Technology Program Participant",
       location: "New York, NY",
       period: "03/2025 - 03/2025",
-    },
-    {
-      company: "Ply Health (YC S24)",
-      logo: "/ply.jpeg",
-      role: "Software Engineer Intern",
-      location: "San Francisco, CA",
-      period: "05/2024 - 09/2024",
-      current: false,
     },
   ]
 
@@ -63,19 +63,19 @@ export default function Experiences() {
       current: false,
     },
     {
-      organization: "Youth Leaders of York Region",
-      logo: "/yloyr.jpeg",
-      role: "External Affairs Executive",
-      location: "Markham, ON",
-      period: "09/2022 - Present",
+      organization: "Shad Canada",
+      logo: "/shad.png",
+      role: "Program Assistant",
+      location: "Oshawa, ON",
+      period: "06/2024 - 08-2024",
       current: false,
     },
     {
-      organization: "CICS Immigration",
-      logo: "/placeholder.svg?height=60&width=60",
-      role: "Education Mentor",
+      organization: "Spirit of Math",
+      logo: "/som.png",
+      role: "Assistant Teacher",
       location: "Markham, ON",
-      period: "09/2022 - Present",
+      period: "08/2020 - 09-2023",
       current: false,
     },
   ]
@@ -122,7 +122,7 @@ export default function Experiences() {
         ))}
       </div>
 
-      <h2 className="text-3xl font-bold mt-16 mb-8">Volunteering</h2>
+      <h2 className="text-3xl font-bold mt-16 mb-8">Other Fun Stuff</h2>
 
       <div className="space-y-6">
         {volunteering.map((vol, index) => (

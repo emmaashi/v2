@@ -7,7 +7,7 @@ export default function Hero() {
         <h1 className="text-5xl font-bold">Emma Shi</h1>
 
         <p className="text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed">
-          Hey! I'm currently studying Computer Science at the <b> University of Waterloo.</b>
+          Hey! I'm currently studying <b>Computer Science</b> at the <b> University of Waterloo. </b>
           I'm interested in all areas of software, particularly the intersection of finance and entrepreneurship!
         </p>
 
