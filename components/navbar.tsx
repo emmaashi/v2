@@ -15,7 +15,7 @@ export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
   const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
-  // After mounting, we can safely show the UI that depends on the theme
+  // after mounting, we can safely show the UI that depends on the theme
   useEffect(() => {
     setMounted(true)
   }, [])
@@ -32,8 +32,8 @@ export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
   return (
     <header className="py-6 backdrop-blur-sm bg-white/70 dark:bg-black/70 sticky top-0 z-40">
       <div className="container mx-auto px-6 max-w-4xl">
-        <div className="flex items-center">
-          <div className="w-1/4">
+        <div className="flex items-center justify-between md:justify-start">
+          <div className="md:w-1/4">
             <button onClick={() => handleTabClick("about")} className="text-xl font-bold transition-colors">
               ES
             </button>
@@ -65,7 +65,7 @@ export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
             </div>
           </div>
 
-          <div className="flex justify-end w-1/4 items-center gap-4">
+          <div className="flex items-center gap-4 md:w-1/4 md:justify-end">
             <Button
               variant="outline"
               size="icon"
@@ -126,4 +126,3 @@ export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
     </header>
   )
 }
-
