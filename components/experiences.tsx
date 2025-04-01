@@ -97,7 +97,7 @@ export default function Experiences() {
     { src: "/hoop.jpg", alt: "basketball" },
     { src: "/vball.jpg", alt: "vball" },
     { src: "/intramurals.jpg", alt: "intramural" },
-    { src: "/aoty.jpg", alt: "aoty" },
+    { src: "/aoty.JPG", alt: "aoty" },
     { src: "/yc.png", alt: "ply health" },
   ]
 
