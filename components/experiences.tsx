@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import Carousel from "./carousel";
 
 type Experience = {
   company: string;
@@ -90,8 +91,18 @@ export default function Experiences() {
     },
   ];
 
+  const carouselImages = [
+    { src: "/ulti.jpg", alt: "ultimate" },
+    { src: "/pizza.jpeg", alt: "nyc pizza" },
+    { src: "/hoop.jpg", alt: "basketball" },
+    { src: "/vball.jpg", alt: "vball" },
+    { src: "/intramurals.jpg", alt: "intramural" },
+    { src: "/aoty.jpg", alt: "aoty" },
+    { src: "/yc.png", alt: "ply health" },
+  ]
+
   return (
-    <section id="experiences" className="py-10">
+    <section id="experiences" className="py-4">
         <h2 className="text-3xl font-bold mb-8">Experiences</h2>
         <div className="space-y-6">
           {experiences.map((exp, index) => (
@@ -191,6 +202,10 @@ export default function Experiences() {
             </div>
           ))}
         </div>
+        <div className="mt-20">
+          <Carousel images={carouselImages} speed={30} height={180} width={270} />
+        </div>
+
     </section>
   );
 }

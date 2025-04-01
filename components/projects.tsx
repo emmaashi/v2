@@ -164,7 +164,7 @@ export default function Projects() {
                     Code
                   </a>
                 </Button>
-                <Button
+                {/* <Button
                   size="sm"
                   asChild
                   className="bg-zinc-800 text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700"
@@ -178,7 +178,7 @@ export default function Projects() {
                     <ExternalLink className="h-4 w-4" />
                     Live Demo
                   </a>
-                </Button>
+                </Button> */}
               </CardFooter>
             </div>
           </Card>
