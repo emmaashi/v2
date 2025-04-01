@@ -1,10 +1,43 @@
+"use client"
+
+import { useState, useEffect, useRef } from "react"
+import { motion } from "framer-motion"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { ExternalLink, Github } from "lucide-react"
+import { Github } from "lucide-react"
 import Image from "next/image"
 
 export default function Projects() {
+  const [visibleProjects, setVisibleProjects] = useState<number[]>([])
+  const projectRefs = useRef<(HTMLDivElement | null)[]>([])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = Number(entry.target.getAttribute("data-index"))
+            if (!visibleProjects.includes(index)) {
+              setVisibleProjects((prev) => [...prev, index])
+            }
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -100px 0px" },
+    )
+
+    projectRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref)
+    })
+
+    return () => {
+      projectRefs.current.forEach((ref) => {
+        if (ref) observer.unobserve(ref)
+      })
+    }
+  }, [visibleProjects])
+
   const projects = [
     {
       title: "Compile",
@@ -105,84 +138,84 @@ export default function Projects() {
       liveUrl: "https://devpost.com/software/traura",
       githubUrl: "https://devpost.com/software/traura",
     },
-  ];  
+  ]
 
   return (
     <section className="py-10">
       <h2 className="text-3xl font-bold mb-8">Projects</h2>
 
       <div className="space-y-6">
-        {projects.map((project, index) => (
-          <Card
-            key={index}
-            className="overflow-hidden flex flex-col md:flex-row h-full bg-white/50 dark:bg-zinc-900/50 backdrop-blur-sm border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all shadow-sm hover:shadow-md group"
-          >
-            <div className="w-full md:w-1/3 h-48 md:h-auto bg-zinc-100 dark:bg-zinc-800 relative overflow-hidden">
-              <div className="absolute inset-0 bg-purple-400/0 group-hover:bg-purple-400/10 dark:group-hover:bg-purple-500/20 transition-colors duration-300 z-10"></div>
-              <Image
-                src={project.image || "/placeholder.svg"}
-                alt={project.title}
-                width={600}
-                height={300}
-                className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-500"
-              />
+        {projects.map((project, index) => {
+          const setProjectRef = (el: HTMLDivElement | null) => {
+            projectRefs.current[index] = el
+          }
+
+          return (
+            <div key={index} ref={setProjectRef} data-index={index}>
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={visibleProjects.includes(index) ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                transition={{
+                  duration: 0.5,
+                  delay: 0.1,
+                  ease: "easeOut",
+                }}
+              >
+                <Card className="overflow-hidden flex flex-col md:flex-row h-full bg-white/50 dark:bg-zinc-900/50 backdrop-blur-sm border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all shadow-sm hover:shadow-md group">
+                  <div className="w-full md:w-1/3 h-48 md:h-auto bg-zinc-100 dark:bg-zinc-800 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-purple-400/0 group-hover:bg-purple-400/10 dark:group-hover:bg-purple-500/20 transition-colors duration-300 z-10"></div>
+                    <Image
+                      src={project.image || "/placeholder.svg"}
+                      alt={project.title}
+                      width={600}
+                      height={300}
+                      className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-500"
+                    />
+                  </div>
+                  <div className="flex flex-col w-full md:w-2/3">
+                    <CardHeader>
+                      <CardTitle className="text-black dark:text-white">{project.title}</CardTitle>
+                      <div className="flex flex-wrap gap-2 mt-2">
+                        {project.technologies.map((tech, idx) => (
+                          <Badge
+                            key={idx}
+                            variant="secondary"
+                            className="text-xs bg-zinc-100 text-zinc-700 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700"
+                          >
+                            {tech}
+                          </Badge>
+                        ))}
+                      </div>
+                    </CardHeader>
+                    <CardContent className="flex-grow">
+                      <CardDescription className="text-base text-zinc-600 dark:text-zinc-400">
+                        {project.description}
+                      </CardDescription>
+                    </CardContent>
+                    <CardFooter className="flex gap-4">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        asChild
+                        className="border-zinc-300 text-zinc-700 hover:bg-zinc-100 hover:text-black dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white"
+                      >
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2"
+                        >
+                          <Github className="h-4 w-4" />
+                          Code
+                        </a>
+                      </Button>
+                    </CardFooter>
+                  </div>
+                </Card>
+              </motion.div>
             </div>
-            <div className="flex flex-col w-full md:w-2/3">
-              <CardHeader>
-                <CardTitle className="text-black dark:text-white">{project.title}</CardTitle>
-                <div className="flex flex-wrap gap-2 mt-2">
-                  {project.technologies.map((tech, idx) => (
-                    <Badge
-                      key={idx}
-                      variant="secondary"
-                      className="text-xs bg-zinc-100 text-zinc-700 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700"
-                    >
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <CardDescription className="text-base text-zinc-600 dark:text-zinc-400">
-                  {project.description}
-                </CardDescription>
-              </CardContent>
-              <CardFooter className="flex gap-4">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  asChild
-                  className="border-zinc-300 text-zinc-700 hover:bg-zinc-100 hover:text-black dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white"
-                >
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2"
-                  >
-                    <Github className="h-4 w-4" />
-                    Code
-                  </a>
-                </Button>
-                {/* <Button
-                  size="sm"
-                  asChild
-                  className="bg-zinc-800 text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700"
-                >
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2"
-                  >
-                    <ExternalLink className="h-4 w-4" />
-                    Live Demo
-                  </a>
-                </Button> */}
-              </CardFooter>
-            </div>
-          </Card>
-        ))}
+          )
+        })}
       </div>
     </section>
   )

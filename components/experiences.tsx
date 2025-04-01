@@ -27,7 +27,7 @@ export default function Experiences() {
     {
       company: "Zomp",
       logo: "/zomp.png",
-      role: "Software Engineer Intern",
+      role: "Software Developer Intern",
       location: "Toronto, ON",
       period: "05/2025 - Present",
       current: true,
