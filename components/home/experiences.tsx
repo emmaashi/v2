@@ -102,7 +102,7 @@ export default function Experiences() {
   ]
 
   return (
-    <section id="experiences" className="py-4">
+    <section id="experiences">
         <h2 className="text-3xl font-bold mb-8">Experiences</h2>
         <div className="space-y-6">
           {experiences.map((exp, index) => (

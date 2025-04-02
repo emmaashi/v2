@@ -2,9 +2,9 @@
 
 import { useState } from "react"
 import Navbar from "@/components/navbar"
-import Hero from "@/components/hero"
-import Experiences from "@/components/experiences"
-import Projects from "@/components/projects"
+import Hero from "@/components/home/hero"
+import Experiences from "@/components/home/experiences"
+import Projects from "@/components/projects/projects"
 import CursorGlow from "@/components/cursor-glow"
 import ContactFooter from "@/components/contact-footer"
 
